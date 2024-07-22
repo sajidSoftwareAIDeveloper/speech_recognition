@@ -31,6 +31,7 @@ export function SpeechToText(){
   function listenHandle1(){
     if(transcript){
       Text_speech(transcript);
+       Text_speech(speech);
     }else Text_speech('please start microphone and then listen');
   }
 
