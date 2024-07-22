@@ -1,4 +1,4 @@
-import React, {useRef } from 'react';
+import React, {useEffect, useRef, useState } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import 'regenerator-runtime';
 import { Text_speech } from './text_speech';
@@ -6,6 +6,7 @@ import {Button, Button1} from './Button';
 
 export function SpeechToText(){
   const textWrite=useRef();
+  const [speech,setSpeech]=useState();
 
   const {  
     transcript,
@@ -33,6 +34,10 @@ export function SpeechToText(){
     }else Text_speech('please start microphone and then listen');
   }
 
+  useEffect(()=>{
+    setSpeech(transcript);
+  },[]);
+
   return (
     <div className="p-5">  
 
@@ -49,6 +54,8 @@ export function SpeechToText(){
         <Button name="Reset" clickHandle={resetTranscript}/>
         <Button name="listen" clickHandle={listenHandle1}/>
       <p className="w-full h-28 border-red-200 border bg-white text-red-400 rounded-xl">{transcript}</p>
+
+    
     </div>
   );
 };
